@@ -1,0 +1,13 @@
+FROM centos:7
+MAINTAINER Rahul <rahulSaubhage555@gmail.com>
+RUN yum update -y
+WORKDIR /opt
+RUN yum install wget -y
+RUN yum install zip -y && yum install unzip -y
+RUN yum install java-11-openjdk -y 
+Add https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.100/bin/apache-tomcat-8.5.100.zip /opt
+RUN unzip /opt/apache-tomcat-8.5.100.zip
+RUN mv apache-tomcat-8.5.100 tomcat-8
+RUN chmod -R 777 /opt/tomcat-8/bin
+COPY target/java-web-app*.war /opt/tomcat-8/webapps/java-web-app-1.0.war
+CMD ["sh","/opt/tomcat-8/bin/startup.sh"]
