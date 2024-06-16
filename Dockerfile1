@@ -10,4 +10,4 @@ RUN unzip /opt/apache-tomcat-8.5.100.zip
 RUN mv apache-tomcat-8.5.100 tomcat-8
 RUN chmod -R 777 /opt/tomcat-8/bin
 COPY target/java-web-app*.war /opt/tomcat-8/webapps/java-web-app-1.0.war
-CMD ["sh","/opt/tomcat-8/bin/startup.sh"]
+CMD ["/opt/tomcat-8/bin/catalina.sh", "run"]
